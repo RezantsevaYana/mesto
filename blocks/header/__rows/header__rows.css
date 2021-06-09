@@ -1,0 +1,8 @@
+.header__rows {
+    width: 880px;
+    height: 74px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 45px;
+}
