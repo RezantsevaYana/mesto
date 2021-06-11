@@ -7,3 +7,14 @@
     color: #FFFFFF;
     margin: 0;
 }
+
+@media screen and (max-width: 370px) {
+    .profile__title {
+        width: 189px;
+        font-size: 27px;
+        line-height: 33px;
+        text-align: center;
+        align-self: end;
+    }
+}
+
