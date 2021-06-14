@@ -1,3 +1,7 @@
+.element__image {
+    height: 23px;
+}
+
 .element__image:hover {
     opacity: 0.6;
     cursor: pointer;
