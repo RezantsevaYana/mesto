@@ -12,22 +12,19 @@
 <body>
     <div class="page">
         <header class="header">
-            <div class="header__rows">
-                <div class="header__logo"></div>
-                <div class="header__line"></div>
-            </div>
+            <div class="header__logo"></div>
         </header>
         <main class="content">
             <section class="profile">
                 <div class="profile__avatar"></div>
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
-                    <button class="profile__button">
+                    <button class="profile__button" type='button'>
                         <img src="./images/pancil.svg" class="profile__image" alt="Карандаш">
                     </button>
                     <p class="profile__subtitle">Исследователь океана</p>
                 </div>
-                <button class="profile__addbutton">
+                <button class="profile__addbutton" type='button'>
                     <img src="./images/plus.svg" class="profile__image" alt="Плюс">
                 </button>
             </section>
@@ -36,70 +33,65 @@
                     <img src="./images/karachaevsk.jpg" class="element__photo" alt="Заброшенное здание">
                     <div class="element__container">
                         <h2 class="element__title">Карачаевск</h2>
-                        <img src="./images/heart.svg" class="element__image" alt="Сердце">
+                        <button class="element__image" type="button"></button>
                     </div>
                 </article>
                 <article class="element">
                     <img src="./images/elbrus.jpg" class="element__photo" alt="Поле и горы">
                     <div class="element__container">
                         <h2 class="element__title">Гора Эльбрус</h2>
-                        <img src="./images/heart.svg" class="element__image" alt="Сердце">
+                        <button class="element__image" type="button"></button>
                     </div>
                 </article>
                 <article class="element">
                     <img src="./images/dombay.jpg" class="element__photo" alt="Горы">
                     <div class="element__container">
                         <h2 class="element__title">Домбай</h2>
-                        <img src="./images/heart.svg" class="element__image" alt="Сердце">
+                        <button class="element__image" type="button"></button>
                     </div>
                 </article>
                 <article class="element">
                     <img src="./images/spb-dvori.jpg" class="element__photo" alt="Двор-колодец">
                     <div class="element__container">
                         <h2 class="element__title">Санкт - Петербург</h2>
-                        <img src="./images/heart.svg" class="element__image" alt="Сердце">
+                        <button class="element__image" type="button"></button>
                     </div>
                 </article>
                 <article class="element">
                     <img src="./images/baikal.jpg" class="element__photo" alt="Горы">
                     <div class="element__container">
                         <h2 class="element__title">Байкал</h2>
-                        <img src="./images/heart.svg" class="element__image" alt="Сердце">
+                        <button class="element__image" type="button"></button>
                     </div>
                 </article>
                 <article class="element">
                     <img src="./images/karellia.jpg" class="element__photo" alt="Ретропоезд">
                     <div class="element__container">
                         <h2 class="element__title">Карелия</h2>
-                        <img src="./images/heart.svg" class="element__image" alt="Сердце">
+                        <button class="element__image" type="button"></button>
                     </div>
                 </article>
             </section>
         </main>
         <footer class="footer">
-            <div class="footer__columns">
                 <p class="footer__copyright">&copy;2020 Mesto Russia</p>
-            </div>
         </footer>
         <section class="popup">
-            <form class="popup__container">
-                <button class="popup__close"></button>
+            <div class="popup__container">
+                <button class="popup__close" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <fieldset class="popup__info">
-                    <input type="text" class="popup__name" value="Жак-Ив Кусто">
-                </fieldset>
-                <div class="popup__line"></div>
-                <fieldset class="popup__description">
-                    <input type="text" class="popup__job" value="Исследователь океана">
-                </fieldset>
-                <div class="popup__line"></div>
-                <button class="popup__button" type="submit">
-                    Сохранить
-                </button>
-            </form>
+                <form class="popup__form" name="profile">
+                    <input type="text" class="popup__input popup__input_info_name" value="" name="info" placeholder="Ваше имя">
+                    <input type="text" class="popup__input popup__input_info_job" value="" name="info" placeholder="Ваш род деятельности">
+                    <button class="popup__button" type="submit">
+                        Сохранить
+                    </button>
+                </form>
+            </div>
         </section>
     </div>
     <script src="./scripts/script.js"></script>
+    <script async src="//pixel-perfect.org/service/script.js?guid=2b0ca439a7308383196b59bc527be8ca"></script>
 </body>
 
 </html>

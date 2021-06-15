@@ -1,8 +1,16 @@
 .element__image {
-    height: 23px;
+    background-image: url(../../../images/heart.svg);
+    background-size: cover;
+    box-sizing: border-box;
+    width: 22px;
+    height: 19px;
+    border: 0;
+    cursor: pointer;
+    background-color: white;
 }
 
 .element__image:hover {
+    transition-duration: .3s;
     opacity: 0.6;
     cursor: pointer;
 }

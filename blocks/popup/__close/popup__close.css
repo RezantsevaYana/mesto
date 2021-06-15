@@ -5,8 +5,8 @@
     background-size: cover;
     border: none;
     position: absolute;
-    top: -40px;
-    right: -40px;
+    top: -30px;
+    right: -30px;
     padding: 0;
 }
 
@@ -15,11 +15,11 @@
     cursor: pointer;
 }
 
-@media screen and (max-width:570px) {
+@media screen and (max-width:572px) {
     .popup__close {
         width: 26px;
         height: 26px;
-        top: -19px;
-        right: -19px;
+        top: -40px;
+        right: 0;
     }
 }
