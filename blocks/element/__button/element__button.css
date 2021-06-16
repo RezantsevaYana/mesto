@@ -1,4 +1,4 @@
-.element__image {
+.element__button {
     background-image: url(../../../images/heart.svg);
     background-size: cover;
     box-sizing: border-box;
@@ -9,7 +9,7 @@
     background-color: white;
 }
 
-.element__image:hover {
+.element__button:hover {
     transition-duration: .3s;
     opacity: 0.6;
     cursor: pointer;
