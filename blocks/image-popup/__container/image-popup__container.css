@@ -1,0 +1,17 @@
+.image-popup__container {
+    position: relative;
+    margin: 0;
+}
+
+@media screen and (max-width:450px) {
+    .image-popup__container  {
+        width: 240px;
+        height: auto;
+        margin: auto;
+    }
+}
+
+
+
+
+

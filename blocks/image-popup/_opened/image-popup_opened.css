@@ -1,10 +1,10 @@
-.item_opened {
+.image-popup_opened {
     display: flex;
-    animation: item-popup_in_show 0.5s;
+    animation: image-popup_in_show 0.5s;
 }
 
 
-@keyframes item-popup_in_show {
+@keyframes image-popup_in_show {
     from {
          opacity: 0;
          transform: scale(0)

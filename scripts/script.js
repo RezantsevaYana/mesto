@@ -48,6 +48,7 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 const listElements = document.querySelector('.elements');
 
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -80,6 +81,7 @@ const initialCards = [
 function setEventListeners(elementCard) {
     elementCard.querySelector('.element__delete').addEventListener('click', elementDelete);
     elementCard.querySelector('.element__button').addEventListener('click', elementLike);
+    elementCard.querySelector('.element__photo').addEventListener('click', imagePopupOpen);
 
 }
 
@@ -95,6 +97,29 @@ function elementLike(evt) {
     evt.target.classList.toggle('element__button_active');
 }
 
+// открытие попапа с изображением
+
+const imagePopupPhoto = document.querySelector('.image-popup__photo');
+const imagePopupTitle = document.querySelector('.image-popup__title');
+
+function imagePopupOpen(evt) {
+    evt.preventDefault();
+    document.querySelector('.image-popup').classList.add('image-popup_opened');
+    imagePopupPhoto.src = this.src;
+    imagePopupPhoto.alt = this.textContent;
+    imagePopupTitle.textContent = this.alt;
+};
+
+// закрытие попапа с изображением
+
+function imagePopupClose() {
+    document.querySelector('.image-popup').classList.remove('image-popup_opened');
+};
+
+document.querySelector('.image-popup__close').addEventListener('click', imagePopupClose);
+
+
+
 // добавление карточек
 
 initialCards.forEach(function (element) {
@@ -106,7 +131,6 @@ initialCards.forEach(function (element) {
     elementCard.querySelector('.element__photo').alt = element.name;
 
     setEventListeners(elementCard);
-
 
     listElements.prepend(elementCard);
 
@@ -138,14 +162,15 @@ function addElement(titleValue, linkValue) {
 
     elementCard.querySelector('.element__title').textContent = titleValue;
     elementCard.querySelector('.element__photo').src = linkValue;
+    elementCard.querySelector('.element__photo').alt = titleValue;
 
-    
+
     setEventListeners(elementCard);
 
     listElements.prepend(elementCard);
 }
 
-document.querySelector('.item__container').addEventListener('submit', function(evt) {
+document.querySelector('.item__container').addEventListener('submit', function (evt) {
     evt.preventDefault()
     const titleInput = itemElement.querySelector('.item__input_info_title');
     const linkInput = itemElement.querySelector('.item__input_info_link');
@@ -157,6 +182,16 @@ document.querySelector('.item__container').addEventListener('submit', function(e
 
     closeItem();
 });
+
+
+
+
+
+
+
+
+
+
 
 
 
