@@ -1,12 +1,12 @@
 // открытие/закрытие попапа - редактирование информации в профиле
 
-const popupElement = document.querySelector('.popup');
+const popupElement = document.querySelector('.popup_js_editor');
 
-const popupCloseButtonElement = popupElement.querySelector('.popup__close');
+const popupCloseButtonElement = popupElement.querySelector('.popup_js_close-editor');
 
 const popupOpenButtonElement = document.querySelector('.profile__button');
 
-let formElement = popupElement.querySelector('.popup__form');
+const formElement = popupElement.querySelector('.popup_js_form-editor');
 
 let nameInput = popupElement.querySelector('.popup__input_info_name');
 
@@ -17,19 +17,36 @@ let nameTitle = document.querySelector('.profile__title');
 let nameSubtitle = document.querySelector('.profile__subtitle');
 
 
-const openPopup = function () {
-    popupElement.classList.add('popup_opened');
+// функция открытия попапа
+
+function openPopup (popup) {
+    popup.classList.add('popup_opened');
+}
+
+// функция закрытия попапа
+
+function closePopup (popup) {
+    popup.classList.remove('popup_opened');
+}
+
+// открытие и закрытие попапа с формой редактирование информации в профиле
+
+const openPopupAdd = function () {
+
+    openPopup (popupElement)
 
     nameInput.value = nameTitle.textContent;
     jobInput.value = nameSubtitle.textContent;
 }
 
-const closePopup = function () {
-    popupElement.classList.remove('popup_opened')
+
+
+const closePopupRemove = function () {
+    closePopup (popupElement)
 }
 
-popupOpenButtonElement.addEventListener('click', openPopup);
-popupCloseButtonElement.addEventListener('click', closePopup);
+popupOpenButtonElement.addEventListener('click', openPopupAdd);
+popupCloseButtonElement.addEventListener('click', closePopupRemove);
 
 
 function formSubmitHandler(evt) {
@@ -38,7 +55,7 @@ function formSubmitHandler(evt) {
     nameTitle.textContent = nameInput.value;
     nameSubtitle.textContent = jobInput.value;
 
-    closePopup();
+    closePopupRemove();
 }
 
 
@@ -82,7 +99,6 @@ function setEventListeners(elementCard) {
     elementCard.querySelector('.element__delete').addEventListener('click', elementDelete);
     elementCard.querySelector('.element__button').addEventListener('click', elementLike);
     elementCard.querySelector('.element__photo').addEventListener('click', imagePopupOpen);
-
 }
 
 // удаление карточек
@@ -101,54 +117,66 @@ function elementLike(evt) {
 
 const imagePopupPhoto = document.querySelector('.image-popup__photo');
 const imagePopupTitle = document.querySelector('.image-popup__title');
+const imagePopup = document.querySelector('.image-popup');
 
-function imagePopupOpen(evt) {
-    evt.preventDefault();
-    document.querySelector('.image-popup').classList.add('image-popup_opened');
+function imagePopupOpen() {
+    openPopup(imagePopup);
     imagePopupPhoto.src = this.src;
     imagePopupPhoto.alt = this.textContent;
     imagePopupTitle.textContent = this.alt;
 };
 
+
+
 // закрытие попапа с изображением
 
 function imagePopupClose() {
-    document.querySelector('.image-popup').classList.remove('image-popup_opened');
+    closePopup (imagePopup);
 };
 
-document.querySelector('.image-popup__close').addEventListener('click', imagePopupClose);
+document.querySelector('.popup_js_close-image').addEventListener('click', imagePopupClose);
 
+// функция добавления карточек и обработка массива
 
+initialCards.forEach(function (item) {
+    renderCard(getElementCard(item.name, item.link));
+});
 
-// добавление карточек
-
-initialCards.forEach(function (element) {
+function getElementCard(name, link) {
     const elementTemplate = document.querySelector('.element-template').content;
     const elementCard = elementTemplate.cloneNode(true);
 
-    elementCard.querySelector('.element__title').textContent = element.name;
-    elementCard.querySelector('.element__photo').src = element.link;
-    elementCard.querySelector('.element__photo').alt = element.name;
+    const elementPhoto = elementCard.querySelector('.element__photo');
+
+    elementCard.querySelector('.element__title').textContent = name;
+    elementPhoto.src = link;
+    elementPhoto.alt = name;
 
     setEventListeners(elementCard);
 
-    listElements.prepend(elementCard);
+    return elementCard;
+};
 
-});
+
+function renderCard(card) {
+    listElements.prepend(card);
+};
+
 
 // открытие и закрытие формы создания карточек
 
-const itemElement = document.querySelector('.item');
-const itemCloseButtonElement = itemElement.querySelector('.item__close');
+const itemElement = document.querySelector('.popup_js_item');
+const itemCloseButtonElement = itemElement.querySelector('.popup_js_close-item');
 const itemOpenButtonElement = document.querySelector('.profile__addbutton');
-let mestoElement = itemElement.querySelector('.item__form');
+let mestoElement = itemElement.querySelector('.popup_js_form-item');
 
 const openItem = function () {
-    itemElement.classList.add('item_opened');
+    openPopup(itemElement);
 }
 
+
 const closeItem = function () {
-    itemElement.classList.remove('item_opened')
+    closePopup(itemElement);
 }
 
 itemOpenButtonElement.addEventListener('click', openItem);
@@ -156,26 +184,13 @@ itemCloseButtonElement.addEventListener('click', closeItem);
 
 // добавление новой карточки
 
-function addElement(titleValue, linkValue) {
-    const elementTemplate = document.querySelector('.element-template').content;
-    const elementCard = elementTemplate.cloneNode(true);
 
-    elementCard.querySelector('.element__title').textContent = titleValue;
-    elementCard.querySelector('.element__photo').src = linkValue;
-    elementCard.querySelector('.element__photo').alt = titleValue;
-
-
-    setEventListeners(elementCard);
-
-    listElements.prepend(elementCard);
-}
-
-document.querySelector('.item__container').addEventListener('submit', function (evt) {
+document.querySelector('.popup_js_container-item').addEventListener('submit', function (evt) {
     evt.preventDefault()
-    const titleInput = itemElement.querySelector('.item__input_info_title');
-    const linkInput = itemElement.querySelector('.item__input_info_link');
+    const titleInput = itemElement.querySelector('.item__input_info_title').value;
+    const linkInput = itemElement.querySelector('.item__input_info_link').value;
 
-    addElement(titleInput.value, linkInput.value);
+    renderCard(getElementCard(titleInput, linkInput));
 
     titleInput.value = '';
     linkInput.value = '';
