@@ -1,4 +1,4 @@
-.image-popup__photo {
+.popup__image-photo {
     height: 540px;
     opacity: 1;
     background-size: cover;
@@ -7,20 +7,20 @@
 }
 
 @media screen and (max-width:905px) {
-    .image-popup__photo  {
+    .popup__image-photo  {
         height: 400px;
         margin: auto;
     }
 }
 
 @media screen and (max-width:630px) {
-    .image-popup__photo  {
+    .popup__image-photo  {
         height: 300px;
     }
 }
 
 @media screen and (max-width:500px) {
-    .image-popup__photo  {
+    .popup__image-photo  {
         width: 240px;
         height: auto;
     }

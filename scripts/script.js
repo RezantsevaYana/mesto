@@ -2,11 +2,11 @@
 
 const popupElement = document.querySelector('.popup_js_editor');
 
-const popupCloseButtonElement = popupElement.querySelector('.popup_js_close-editor');
+const popupCloseButtonElement = popupElement.querySelector('.popup__close_js_editor');
 
 const popupOpenButtonElement = document.querySelector('.profile__button');
 
-const formElement = popupElement.querySelector('.popup_js_form-editor');
+const formElement = popupElement.querySelector('.popup__form_js_editor');
 
 let nameInput = popupElement.querySelector('.popup__input_info_name');
 
@@ -19,13 +19,13 @@ let nameSubtitle = document.querySelector('.profile__subtitle');
 
 // функция открытия попапа
 
-function openPopup (popup) {
+function openPopup(popup) {
     popup.classList.add('popup_opened');
 }
 
 // функция закрытия попапа
 
-function closePopup (popup) {
+function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
 
@@ -33,7 +33,7 @@ function closePopup (popup) {
 
 const openPopupAdd = function () {
 
-    openPopup (popupElement)
+    openPopup(popupElement)
 
     nameInput.value = nameTitle.textContent;
     jobInput.value = nameSubtitle.textContent;
@@ -42,7 +42,7 @@ const openPopupAdd = function () {
 
 
 const closePopupRemove = function () {
-    closePopup (popupElement)
+    closePopup(popupElement)
 }
 
 popupOpenButtonElement.addEventListener('click', openPopupAdd);
@@ -115,9 +115,9 @@ function elementLike(evt) {
 
 // открытие попапа с изображением
 
-const imagePopupPhoto = document.querySelector('.image-popup__photo');
-const imagePopupTitle = document.querySelector('.image-popup__title');
-const imagePopup = document.querySelector('.image-popup');
+const imagePopupPhoto = document.querySelector('.popup__image-photo');
+const imagePopupTitle = document.querySelector('.popup__image-title');
+const imagePopup = document.querySelector('.popup_image');
 
 function imagePopupOpen() {
     openPopup(imagePopup);
@@ -131,10 +131,10 @@ function imagePopupOpen() {
 // закрытие попапа с изображением
 
 function imagePopupClose() {
-    closePopup (imagePopup);
+    closePopup(imagePopup);
 };
 
-document.querySelector('.popup_js_close-image').addEventListener('click', imagePopupClose);
+document.querySelector('.popup__close_js_image').addEventListener('click', imagePopupClose);
 
 // функция добавления карточек и обработка массива
 
@@ -166,9 +166,9 @@ function renderCard(card) {
 // открытие и закрытие формы создания карточек
 
 const itemElement = document.querySelector('.popup_js_item');
-const itemCloseButtonElement = itemElement.querySelector('.popup_js_close-item');
+const itemCloseButtonElement = itemElement.querySelector('.popup__close_js_item');
 const itemOpenButtonElement = document.querySelector('.profile__addbutton');
-let mestoElement = itemElement.querySelector('.popup_js_form-item');
+let mestoElement = itemElement.querySelector('.popup__form_js_item');
 
 const openItem = function () {
     openPopup(itemElement);
@@ -185,10 +185,10 @@ itemCloseButtonElement.addEventListener('click', closeItem);
 // добавление новой карточки
 
 
-document.querySelector('.popup_js_container-item').addEventListener('submit', function (evt) {
+document.querySelector('.popup__container_js_item').addEventListener('submit', function (evt) {
     evt.preventDefault()
-    const titleInput = itemElement.querySelector('.item__input_info_title').value;
-    const linkInput = itemElement.querySelector('.item__input_info_link').value;
+    const titleInput = itemElement.querySelector('.popup__input_info_title').value;
+    const linkInput = itemElement.querySelector('.popup__input_info_link').value;
 
     renderCard(getElementCard(titleInput, linkInput));
 

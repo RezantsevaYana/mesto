@@ -46,43 +46,42 @@
         </footer>
         <section class="popup popup_js_editor">
             <div class="popup__container">
-                <button class="popup__close popup_js_close-editor" type="button"></button>
-                <h2 class="popup__title popup_js_title-editor">Редактировать профиль</h2>
-                <form class="popup__form popup_js_form-editor" name="profile">
+                <button class="popup__close popup__close_js_editor" type="button"></button>
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <form class="popup__form popup__form_js_editor" name="profile">
                     <input type="text" class="popup__input popup__input_info_name" value="" name="name"
                         placeholder="Ваше имя">
                     <input type="text" class="popup__input popup__input_info_job" value="" name="job"
                         placeholder="Ваш род деятельности">
-                    <button class="popup__button popup_js_button-editor" type="submit">
+                    <button class="popup__button" type="submit">
                         Сохранить
                     </button>
                 </form>
             </div>
         </section>
         <section class="popup popup_js_item">
-            <div class="popup__container popup_js_container-item">
-                <button class="popup__close popup_js_close-item" type="button"></button>
-                <h2 class="popup__title popup_js_title-item">Новое место</h2>
-                <form class="popup__form popup_js_form-item" name="mesto">
-                    <input type="text" class="popup__input item__input_info_title" value="" name="title"
+            <div class="popup__container popup__container_js_item">
+                <button class="popup__close popup__close_js_item" type="button"></button>
+                <h2 class="popup__title">Новое место</h2>
+                <form class="popup__form popup__form_js_item" name="mesto">
+                    <input type="text" class="popup__input popup__input_info_title" value="" name="title"
                         placeholder="Название">
-                    <input type="url" class="popup__input item__input_info_link" value="" name="link"
+                    <input type="url" class="popup__input popup__input_info_link" value="" name="link"
                         placeholder="Ссылка на картинку">
-                    <button class="popup__button popup_js_button-item" type="submit">
+                    <button class="popup__button" type="submit">
                         Создать
                     </button>
                 </form>
             </div>
         </section>
     </div>
-    <section class='popup image-popup'>
-        <figure class="image-popup__container">
-            <button class="popup__close popup_js_close-image" type="button"></button>
-            <img class='image-popup__photo' src=' ' alt=''>
-            <figcaption class='image-popup__title'></figcaption>
+    <section class='popup popup_image'>
+        <figure class="popup__container-image">
+            <button class="popup__close popup__close_js_image" type="button"></button>
+            <img class='popup__image-photo' src=' ' alt=''>
+            <figcaption class='popup__image-title'></figcaption>
         </figure>
     </section>
     <script src="./scripts/script.js"></script>
 </body>
-
 </html>
