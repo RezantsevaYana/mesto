@@ -8,13 +8,13 @@ const popupOpenButtonElement = document.querySelector('.profile__button');
 
 const formElement = popupElement.querySelector('.popup__form_js_editor');
 
-let nameInput = popupElement.querySelector('.popup__input_info_name');
+const nameInput = popupElement.querySelector('.popup__input_info_name');
 
-let jobInput = popupElement.querySelector('.popup__input_info_job');
+const jobInput = popupElement.querySelector('.popup__input_info_job');
 
-let nameTitle = document.querySelector('.profile__title');
+const nameTitle = document.querySelector('.profile__title');
 
-let nameSubtitle = document.querySelector('.profile__subtitle');
+const nameSubtitle = document.querySelector('.profile__subtitle');
 
 
 // функция открытия попапа
@@ -168,7 +168,7 @@ function renderCard(card) {
 const itemElement = document.querySelector('.popup_js_item');
 const itemCloseButtonElement = itemElement.querySelector('.popup__close_js_item');
 const itemOpenButtonElement = document.querySelector('.profile__addbutton');
-let mestoElement = itemElement.querySelector('.popup__form_js_item');
+const mestoElement = itemElement.querySelector('.popup__form_js_item');
 
 const openItem = function () {
     openPopup(itemElement);
