@@ -16,20 +16,39 @@ const nameTitle = document.querySelector('.profile__title');
 
 const nameSubtitle = document.querySelector('.profile__subtitle');
 
+const popup = document.querySelectorAll('.popup');
+
+const formAddCard = document.forms.mesto;
+
+const formUser = document.forms.profile;
+
+
 
 // функция открытия попапа
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+   document.addEventListener('keydown', closePopupOnEsc);
 }
 
 // функция закрытия попапа
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupOnEsc);
 }
 
-// открытие и закрытие попапа с формой редактирование информации в профиле
+// функция закрытия попапа на esc
+
+function closePopupOnEsc(evt) {
+    const popup = document.querySelector('.popup_opened');
+    if (evt.key === 'Escape') {
+        closePopup(popup);
+    }
+};
+
+
+// открытие и закрытие попапа с формой редактирования информации в профиле
 
 const openPopupAdd = function () {
 
@@ -48,6 +67,7 @@ const closePopupRemove = function () {
 popupOpenButtonElement.addEventListener('click', openPopupAdd);
 popupCloseButtonElement.addEventListener('click', closePopupRemove);
 
+// Поля формы принимают значения такие же как на странице
 
 function formSubmitHandler(evt) {
     evt.preventDefault();
@@ -169,6 +189,8 @@ const itemElement = document.querySelector('.popup_js_item');
 const itemCloseButtonElement = itemElement.querySelector('.popup__close_js_item');
 const itemOpenButtonElement = document.querySelector('.profile__addbutton');
 const mestoElement = itemElement.querySelector('.popup__form_js_item');
+const mestoInfoTitle = itemElement.querySelector('.popup__input_info_title');
+const mestoInfoLink = itemElement.querySelector('.popup__input_info_link');
 
 const openItem = function () {
     openPopup(itemElement);
@@ -182,6 +204,7 @@ const closeItem = function () {
 itemOpenButtonElement.addEventListener('click', openItem);
 itemCloseButtonElement.addEventListener('click', closeItem);
 
+
 // добавление новой карточки
 
 
@@ -192,11 +215,40 @@ document.querySelector('.popup__container_js_item').addEventListener('submit', f
 
     renderCard(getElementCard(titleInput, linkInput));
 
-    titleInput.value = '';
-    linkInput.value = '';
-
+    evt.target.reset();
+    
     closeItem();
 });
+
+// функция закрытия попапа на оверлэй
+
+
+function closePopupOnOverlay() {
+    const popup = document.querySelectorAll('.popup');
+
+    popup.forEach(popup => {
+        popup.addEventListener('click', (event) => {
+            if (event.target === event.currentTarget) {   
+                closePopup(popup);
+              };
+        });
+    });
+};
+
+
+closePopupOnOverlay();
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

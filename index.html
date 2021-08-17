@@ -48,11 +48,13 @@
             <div class="popup__container">
                 <button class="popup__close popup__close_js_editor" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form class="popup__form popup__form_js_editor" name="profile">
-                    <input type="text" class="popup__input popup__input_info_name" value="" name="name"
-                        placeholder="Ваше имя">
-                    <input type="text" class="popup__input popup__input_info_job" value="" name="job"
-                        placeholder="Ваш род деятельности">
+                <form class="popup__form popup__form_js_editor" name="profile" novalidate>
+                    <input id="name-input" type="text" class="popup__input popup__input_info_name" value="" name="name"
+                        placeholder="Ваше имя" required minlength="2" maxlength="40">
+                    <span class='error name-input-error'></span>
+                    <input id="description-input" type="text" class="popup__input popup__input_info_job" value=""
+                        name="job" placeholder="Ваш род деятельности" required minlength="2" maxlength="200">
+                    <span class='error description-input-error'></span>
                     <button class="popup__button" type="submit">
                         Сохранить
                     </button>
@@ -63,12 +65,14 @@
             <div class="popup__container popup__container_js_item">
                 <button class="popup__close popup__close_js_item" type="button"></button>
                 <h2 class="popup__title">Новое место</h2>
-                <form class="popup__form popup__form_js_item" name="mesto">
-                    <input type="text" class="popup__input popup__input_info_title" value="" name="title"
-                        placeholder="Название">
-                    <input type="url" class="popup__input popup__input_info_link" value="" name="link"
-                        placeholder="Ссылка на картинку">
-                    <button class="popup__button" type="submit">
+                <form class="popup__form popup__form_js_item" name="mesto" novalidate>
+                    <input id="title-input" type="text" class="popup__input popup__input_info_title" value=""
+                        name="title" placeholder="Название" required minlength="2" maxlength="30">
+                    <span class='error title-input-error'></span>
+                    <input id='email-input' type="url" class="popup__input popup__input_info_link" value="" name="link"
+                        placeholder="Ссылка на картинку" required>
+                    <span class='error email-input-error'></span>
+                    <button class="popup__button popup__button_invalid popup__button_save" type="submit" disabled>
                         Создать
                     </button>
                 </form>
@@ -83,5 +87,7 @@
         </figure>
     </section>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
+
 </html>
