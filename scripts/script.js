@@ -162,6 +162,8 @@ initialCards.forEach(function (item) {
     renderCard(getElementCard(item.name, item.link));
 });
 
+// функция создания карточки
+
 function getElementCard(name, link) {
     const elementTemplate = document.querySelector('.element-template').content;
     const elementCard = elementTemplate.cloneNode(true);
@@ -177,6 +179,7 @@ function getElementCard(name, link) {
     return elementCard;
 };
 
+// функция добавление карточки в контейнер
 
 function renderCard(card) {
     listElements.prepend(card);
@@ -195,6 +198,7 @@ const mestoInfoLink = itemElement.querySelector('.popup__input_info_link');
 const openItem = function () {
     openPopup(itemElement);
 }
+
 
 
 const closeItem = function () {
