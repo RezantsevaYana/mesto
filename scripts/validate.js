@@ -1,28 +1,37 @@
 
+ const selectorParameters = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitSelector: '.popup__button',
+    inputInvalidSelector: 'popup__input_invalid',
+    buttonInvalidSelector: 'popup__button_invalid'
+}
+
+
 // функция, которая добавляет сообщение об ошибке
 
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, inputInactiveClass) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('popup__input_invalid');
+    inputElement.classList.add(inputInactiveClass);
     errorElement.innerText = errorMessage;
 }
 
 
 // функция, которая скрывает сообщение об ошибке
 
-const hideInputError = (formElement, inputElement) => {
+const hideInputError = (formElement, inputElement, inputInactiveClass) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('popup__input_invalid');
+    inputElement.classList.remove(inputInactiveClass);
     errorElement.innerText = '';
 }
 
 // функция проверка валидности, отвечающая за демонстрацию или удаление ошибки
 
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, validationParams) => {
     if (!inputElement.validity.valid) {
-        showInputError(formElement, inputElement, inputElement.validationMessage);
+        showInputError(formElement, inputElement, inputElement.validationMessage, validationParams.inputInvalidSelector);
     } else {
-        hideInputError(formElement, inputElement);
+        hideInputError(formElement, inputElement, validationParams.inputInvalidSelector);
     }
 }
 
@@ -34,36 +43,36 @@ const hasNotValidInput = (inputList) => {
 
 // функция, отвечающая за активность кнопки
 
-const toggleButtonState = (inputList, buttonElement) => {
+const toggleButtonState = (inputList, buttonElement, buttonInvalidClass) => {
     if (hasNotValidInput(inputList)) {
-        buttonElement.classList.add("popup__button_invalid");
+        buttonElement.classList.add(buttonInvalidClass);
         buttonElement.setAttribute('disabled', true);
     } else {
-        buttonElement.classList.remove("popup__button_invalid");
+        buttonElement.classList.remove(buttonInvalidClass);
         buttonElement.removeAttribute('disabled');
     }
 }
 
 // функция, которая навешивает слушатели на инпуты
 
-const setEventOnInput = (formElement, inputSelector, submitSelector) => {
-    const inputList = Array.from(formElement.querySelectorAll(inputSelector)); // создаем массив из всех имеющхся инпутов
-    const buttonElement = formElement.querySelector(submitSelector);
+const setEventOnInput = (formElement, validationParams) => {
+    const inputLists = Array.from(formElement.querySelectorAll(validationParams.inputSelector)); // создаем массив из всех имеющхся инпутов
+    const buttonElement = formElement.querySelector(validationParams.submitSelector);
 
     // обход массива всех инпутов, для каждого инпута выполняются функции
 
-    inputList.forEach(inputElement => {
+    inputLists.forEach(inputElement => {
         inputElement.addEventListener('input', function () {
-            checkInputValidity(formElement, inputElement);
-            toggleButtonState(inputList, buttonElement);
+            checkInputValidity(formElement, inputElement, validationParams);
+            toggleButtonState(inputLists, buttonElement, validationParams.buttonInvalidSelector);
         });
     });
 };
 
 // функция, которая навешивает слушатели на форму и отменяет стандартное поведение браузера
 
-const enableValidation = ({ formSelector, inputSelector, submitSelector }) => {
-    const formList = Array.from(document.querySelectorAll(formSelector));
+const enableValidation = (validationParams) => {
+    const formList = Array.from(document.querySelectorAll(validationParams.formSelector));
     formList.forEach((formElement) => {
         formElement.addEventListener('submit', function (evt) {
             evt.preventDefault();
@@ -71,19 +80,16 @@ const enableValidation = ({ formSelector, inputSelector, submitSelector }) => {
     });
 
     formList.forEach(formElement => {
-        setEventOnInput(formElement, inputSelector, submitSelector);
+        setEventOnInput(formElement, validationParams);
     })
 
 
 }
 
 
-enableValidation(
-    {
-        formSelector: '.popup__form',
-        inputSelector: '.popup__input',
-        submitSelector: '.popup__button',
-    });
+enableValidation(selectorParameters);
+
+
 
 
 
