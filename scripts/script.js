@@ -1,3 +1,5 @@
+
+
 // открытие/закрытие попапа - редактирование информации в профиле
 
 const popupElement = document.querySelector('.popup_js_editor');
@@ -168,6 +170,8 @@ initialCards.forEach(function (item) {
     renderCard(getElementCard(item.name, item.link));
 });
 
+
+
 // функция создания карточки
 
 function getElementCard(name, link) {
@@ -190,6 +194,8 @@ function getElementCard(name, link) {
 function renderCard(card) {
     listElements.prepend(card);
 };
+
+
 
 
 // открытие и закрытие формы создания карточек
