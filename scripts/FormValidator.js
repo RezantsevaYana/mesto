@@ -1,5 +1,4 @@
 
-
 export class FormValidator {
     constructor(selectorParameters, formElement) {
         this._formSelector = selectorParameters.formSelector,
@@ -7,6 +6,7 @@ export class FormValidator {
         this._submitSelector = selectorParameters.submitSelector,
         this._inputInvalidSelector = selectorParameters.inputInvalidSelector,
         this._buttonInvalidSelector = selectorParameters.buttonInvalidSelector,
+        this._spanInvalidActive = selectorParameters.spanInvalidActive,
 
         this._formElement = formElement
     };
@@ -15,9 +15,9 @@ export class FormValidator {
     // приватный метод, который добавляет сообщение об ошибке
 
     _showInputError = (inputElement, errorMessage) => {
-        const errorElement = this._formElement.querySelectorAll(`.${inputElement.id}-error`);
+        const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
         inputElement.classList.add(this._inputInvalidSelector);
-        errorElement.textContent = errorMessage;
+        errorElement.innerText = errorMessage;
     }
 
     // приватный метод, который скрывает сообщение об ошибке
@@ -25,10 +25,9 @@ export class FormValidator {
     _hideInputError = (inputElement) => {
         const errorElement = this._formElement.querySelectorAll(`.${inputElement.id}-error`);
         inputElement.classList.remove(this._inputInvalidSelector);
-        errorElement.textContentt = '';
+        errorElement.innerText = '';
     }
 
-   
     // приватный метод проверка валидности, отвечающая за демонстрацию или удаление ошибки
 
     _checkInputValidity = (inputElement) => {
@@ -38,6 +37,8 @@ export class FormValidator {
             this._hideInputError(inputElement);
         }
     }
+
+   
 
     // приватный метод проверки валидности при переборе массива инпутов. Если хотя бы один инпут невалиден - возвращает true
 
@@ -64,7 +65,7 @@ export class FormValidator {
 
     _setEventOnInput = () => {
         const inputLists = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-        const buttonElement = this._formElement.querySelectorAll(this._submitSelector);
+        const buttonElement = this._formElement.querySelector(this._submitSelector);
 
         inputLists.forEach((inputElement) => {
             inputElement.addEventListener('input', () => {
@@ -75,7 +76,6 @@ export class FormValidator {
         });
     }
 
-    
 
     // публичный метод, который включает валидацию формы
 
@@ -83,7 +83,6 @@ export class FormValidator {
         this._setEventOnInput();
     }
 
-  
 }
 
 

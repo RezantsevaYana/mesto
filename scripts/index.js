@@ -141,9 +141,6 @@ const openPopupAdd = function () {
 
     nameInput.value = nameTitle.textContent;
     jobInput.value = nameSubtitle.textContent;
-
-   // hideInputError(formElementEditor, nameInput);
-    // hideInputError(formElementEditor, jobInput);
 }
 
 //закрытие попапа с формой редактирования информации в профиле
@@ -168,9 +165,11 @@ function formSubmitHandler(evt) {
 // открытие формы создания карточки
 const openItem = function () {
     openPopup(itemElement);
-    const inputListsCreateCard = Array.from(formAddCards.querySelectorAll('.popup__input'));
+    
     const popupButtonElementSaveCard = document.querySelector('.popup__button_save');
-   // toggleButtonState(inputListsCreateCard, popupButtonElementSaveCard, selectorParameters.buttonInvalidSelector);
+
+    popupButtonElementSaveCard.classList.add('popup__button_invalid');
+    popupButtonElementSaveCard.setAttribute('disabled', true);
 }
 
 // закрытие формы создания карточки
@@ -189,6 +188,7 @@ formAddCard.addEventListener('submit', function (evt) {
     }
    
     addElement(element);
+    
 
     evt.target.reset();
     
@@ -236,6 +236,7 @@ formEditorValidation.enablevalidation();
 // валидация формы добавления карточек
 const formMestoValidation = new FormValidator(selectorParameters, mestoElement);
 formMestoValidation.enablevalidation();
+
 
 
 
