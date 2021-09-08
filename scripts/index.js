@@ -121,6 +121,7 @@ function closePopup(popup) {
     document.removeEventListener('keydown', closePopupOnEsc);
 }
 
+
 // функция закрытия попапа на esc
 
 function closePopupOnEsc(evt) {
@@ -236,6 +237,8 @@ formEditorValidation.enablevalidation();
 // валидация формы добавления карточек
 const formMestoValidation = new FormValidator(selectorParameters, mestoElement);
 formMestoValidation.enablevalidation();
+
+
 
 
 
