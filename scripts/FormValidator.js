@@ -23,7 +23,7 @@ export class FormValidator {
     // приватный метод, который скрывает сообщение об ошибке
 
     _hideInputError = (inputElement) => {
-        const errorElement = this._formElement.querySelectorAll(`.${inputElement.id}-error`);
+        const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
         inputElement.classList.remove(this._inputInvalidSelector);
         errorElement.innerText = '';
     }
@@ -59,7 +59,6 @@ export class FormValidator {
         };
     }
 
-    
 
     // приватный метод, который навешивает слушатели на инпуты
 
@@ -74,6 +73,18 @@ export class FormValidator {
             })
 
         });
+    }
+
+    // метод для очистки ошибок и управления кнопкой при открытии попапов
+
+    resetValidation() {
+        const inputLists = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+        const buttonElement = this._formElement.querySelector(this._submitSelector);
+
+        this._toggleButtonState(inputLists, buttonElement);
+        inputLists.forEach((inputElement) => {
+            this._hideInputError(inputElement);
+        })
     }
 
 

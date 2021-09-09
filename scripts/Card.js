@@ -1,9 +1,10 @@
 
 export  class Card {
-    constructor(data, cardSelector) {
+    constructor(data, cardSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     // приватный метод, возвращающий разметку карточки
@@ -22,7 +23,7 @@ export  class Card {
     // приватный метод обработчик событий
     _setEventListener() {
         this._photo.addEventListener('click', () => {
-            this._openPopup();
+            this._handleCardClick(this._name, this._link);
         });
 
         this._photoDelete.addEventListener('click', () => {
@@ -34,16 +35,6 @@ export  class Card {
         });
     };
 
-    
-    // приватный метод открытия попапа с изображением
-
-    _openPopup() {
-        document.querySelector('.popup_image').classList.add('popup_opened');
-
-        document.querySelector('.popup__image-photo').src = this._link;
-        document.querySelector('.popup__image-photo').alt = this._name;
-        document.querySelector('.popup__image-title').textContent = this._name;
-    };
 
 
     // приватный метод удаления карточки
@@ -73,8 +64,8 @@ export  class Card {
         // добавляем данные в карточку
 
         this._element.querySelector('.element__title').textContent = this._name;
-        this._element.querySelector('.element__photo').src = this._link;
-        this._element.querySelector('.element__photo').alt = this._name;
+        this._photo.src = this._link;
+        this._photo.alt = this._name;
 
         return this._element;
     };

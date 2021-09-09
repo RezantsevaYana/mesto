@@ -73,7 +73,6 @@ const initialCards = [
     }
 ];
 
-
 // селекторы для валидации форм
 
 const selectorParameters = {
@@ -85,26 +84,6 @@ const selectorParameters = {
 }
 
 // ФУНКЦИИ
-
-// функция добавления элемента в контейнер
-
-function addElement(item) {
-    const card = new Card(item, '.element-template');
-
-    // создаем карточку
-
-    const cardElement = card.generateCard();
-
-    // добавляем карточку в разметку
-
-    listElements.prepend(cardElement);
-};
-
-// заполнение страницы массивом
-
-initialCards.forEach((item) => {
-    addElement(item);
-});
 
 
 // функция открытия попапа
@@ -121,8 +100,8 @@ function closePopup(popup) {
     document.removeEventListener('keydown', closePopupOnEsc);
 }
 
+// функция закрытия попапа на эскейп
 
-// функция закрытия попапа на esc
 
 function closePopupOnEsc(evt) {
     
@@ -131,6 +110,40 @@ function closePopupOnEsc(evt) {
         closePopup(popup);
     }
 };
+
+// функция, которая получает на вход данные карточки и открывает попап с изображением
+
+function handleCardClick(name, link) {
+    openPopup(imagePopup);
+
+    document.querySelector('.popup__image-photo').src = link;
+    document.querySelector('.popup__image-photo').alt = name;
+    document.querySelector('.popup__image-title').textContent = name;
+}
+
+// функция которая создает экземпляр класса
+
+
+function createCarde(item) {
+    const card = new Card(item, '.element-template', handleCardClick);
+    const cardElement = card.generateCard();
+
+    return cardElement;
+}
+
+// функция добавления элемента в контейнер
+
+function addElement(cardElement) {
+    listElements.prepend(cardElement);
+}
+
+// функция, которая обходит массив и добавляет карточки на страницу
+
+initialCards.forEach((item) => {
+    addElement(createCarde(item));
+});
+
+
 
 // открытие попапа с формой редактирования информации в профиле
 
@@ -142,6 +155,8 @@ const openPopupAdd = function () {
 
     nameInput.value = nameTitle.textContent;
     jobInput.value = nameSubtitle.textContent;
+
+    formEditorValidation.resetValidation();
 }
 
 //закрытие попапа с формой редактирования информации в профиле
@@ -166,11 +181,10 @@ function formSubmitHandler(evt) {
 // открытие формы создания карточки
 const openItem = function () {
     openPopup(itemElement);
-    
-    const popupButtonElementSaveCard = document.querySelector('.popup__button_save');
 
-    popupButtonElementSaveCard.classList.add('popup__button_invalid');
-    popupButtonElementSaveCard.setAttribute('disabled', true);
+    // управление кнопкой 
+    
+    formMestoValidation.resetValidation();
 }
 
 // закрытие формы создания карточки
@@ -188,7 +202,7 @@ formAddCard.addEventListener('submit', function (evt) {
         link: document.querySelector('.popup__input_info_link').value
     }
    
-    addElement(element);
+    addElement(createCarde(element));
     
 
     evt.target.reset();
@@ -237,6 +251,10 @@ formEditorValidation.enablevalidation();
 // валидация формы добавления карточек
 const formMestoValidation = new FormValidator(selectorParameters, mestoElement);
 formMestoValidation.enablevalidation();
+
+
+
+
 
 
 
