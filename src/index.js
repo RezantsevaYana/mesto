@@ -1,12 +1,12 @@
-
+//import './pages/index.css'
 // импорты файлов
 
-import { Card } from '../components/Card.js';
-import { FormValidator } from '../components/FormValidator.js';
-import { Section } from '../components/Section.js';
-import { PopupWithImage } from '../components/PopupWithImage.js';
-import UserInfo from '../components/UserInfo.js';
-import { PopupWithForm } from '../components/PopupWithForm.js';
+import { Card } from './components/Card.js';
+import { FormValidator } from './components/FormValidator.js';
+import { Section } from './components/Section.js';
+import { PopupWithImage } from './components/PopupWithImage.js';
+import UserInfo from './components/UserInfo.js';
+import { PopupWithForm } from './components/PopupWithForm.js';
 import { imagePopup,
         selectorParameters, 
         formElementEditor, mestoElement,
@@ -17,7 +17,7 @@ import { imagePopup,
         popupElement,
         popupOpenButtonElement, 
         itemOpenButtonElement,
-        listCards  } from '../utils/constants.js';
+        listCards  } from './utils/constants.js';
 
 
 
