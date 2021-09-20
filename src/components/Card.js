@@ -1,5 +1,5 @@
 
-export  class Card {
+export class Card {
     constructor(data, cardSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
@@ -18,6 +18,7 @@ export  class Card {
 
         return cardElement;
     }
+    
 
     
     // приватный метод обработчик событий
