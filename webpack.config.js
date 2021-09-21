@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // объект в который записываются все настройки
 module.exports = {
-    entry: { main: './src/index.js' },   // точка входа
+    entry: { main: './src/pages/index.js' },   // точка входа
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js',
@@ -18,6 +18,11 @@ module.exports = {
         port: 8080, // порт, чтобы открывать сайт по адресу localhost:8080, но можно поменять порт
     
         open: true // сайт будет открываться сам при запуске npm run dev
+      },
+      watch: true,
+      watchOptions: {
+          aggregateTimeout: 500,
+          poll: 1000 // порверяем измемения раз в секунду
       },
       module: {
         rules: [ // rules — это массив правил
