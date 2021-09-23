@@ -7,32 +7,29 @@ import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
-import { imagePopup,
+import { 
         selectorParameters, 
         formElementEditor, mestoElement,
         initialCards,
-        itemElement, 
         nameTitle, 
         nameSubtitle, 
-        popupElement,
         popupOpenButtonElement, 
         itemOpenButtonElement,
         listCards  } from '../utils/constants.js';
 
 
 
-
 // ФУНКЦИИ
 // экземлпяр класса попапа с изображением
-const popupImage = new PopupWithImage(imagePopup);
+const popupImage = new PopupWithImage('.popup_image');
 popupImage.setEventListener();
 
 // экземпляр попапа редактированя информации о себе
-const popupEdit = new PopupWithForm(popupElement, submitFormEditProfile);
+const popupEdit = new PopupWithForm('.popup_js_editor', submitFormEditProfile);
 popupEdit.setEventListener();
 
 // экземпляр попапа добавления новой карточки
-const popupCard = new PopupWithForm(itemElement, submitFormAddCard);
+const popupCard = new PopupWithForm('.popup_js_item', submitFormAddCard);
 popupCard.setEventListener();
 
 // экземпляр класса, овечающего за отображение информации о пользователе
@@ -48,14 +45,15 @@ renderCardElements.renderItems();
 
 // обработчик отправки данных формы редактирования информации о себе (изменение информации о себе на странице)
 function submitFormEditProfile() {
-    userInfo.setUserInfo(this._getInputValues());
+    userInfo.setUserInfo(popupEdit.getInputValues());
+    popupEdit.closePopup();
 };
 
 // обработчик отправки данных формы добавления карточки (при нажатии на кнопку создается карточка)
 function submitFormAddCard() {
     
     // собрали значение всех инпутов с формы в массив
-    const newCard = this._getInputValues();
+    const newCard = popupCard.getInputValues();
 
     // по новому массиву создали экземлпяр карточки
 
@@ -64,7 +62,8 @@ function submitFormAddCard() {
     // добавляем новую карточку в разметку
     
     renderCardElements.addItem(newCardElement);
-
+    
+    popupCard.closePopup();
 };
 
 // функция получения разметки новой карточки
@@ -89,10 +88,7 @@ const openItem = function () {
     // управление кнопкой 
     
     formMestoValidation.resetValidation();
-
-    // очищение полей формы
-    popupCard.resetform();
-}
+};
 
 
 // СЛУШАТЕЛИ
@@ -121,6 +117,8 @@ formEditorValidation.enablevalidation();
 // валидация формы добавления карточек
 const formMestoValidation = new FormValidator(selectorParameters, mestoElement);
 formMestoValidation.enablevalidation();
+
+
 
 
 

@@ -7,12 +7,12 @@ export class PopupWithForm extends Popup {
     constructor (popupSelector, sumbitForm) {
         super(popupSelector);
         this._sumbitForm = sumbitForm;
-        this._form = this._popupSelector.querySelector('.popup__form');
+        this._form = this._popup.querySelector('.popup__form');
         this._inputLists = this._form.querySelectorAll('.popup__input');
     }
 
     // приватный метод собирает данные всех полей формы 
-    _getInputValues () {
+    getInputValues () {
         // создали пустой массив, куда будут добавляться значения всех инпутов, прошлись по массиву инпутов и собрали все значение
         this._inputValues = {};
         this._inputLists.forEach(input => {
@@ -39,14 +39,12 @@ export class PopupWithForm extends Popup {
         super.setEventListener();
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault();
-            this.closePopup();
             this._sumbitForm();
         }); 
     }
 
-    // сброс данных в форме
-
-    resetform() {
+    closePopup() {
         this._form.reset();
+        super.closePopup();
     }
 }
