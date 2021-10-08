@@ -1,4 +1,4 @@
-import './index.css'
+//import './index.css'
 // импорты файлов
 
 import { Card } from '../components/Card.js';
