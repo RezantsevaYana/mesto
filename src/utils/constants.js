@@ -19,6 +19,10 @@ export const popupCloseButtonElement = popupElement.querySelector('.popup__close
 export const popupOpenButtonElement = document.querySelector('.profile__button');
 export const nameTitle = document.querySelector('.profile__title');  // значение о пользователе на странице
 export const nameSubtitle = document.querySelector('.profile__subtitle'); // значение о пользователе на странице
+export const userAvatar = document.querySelector('.profile__avatar');
+export const avatarEditInput = document.querySelector('.popup__input_avatar_link'); // инпут для ссылки на новый аватар
+export const avatarEditButton = document.querySelector('.profile__avatar-button') // кнопка - аватар
+export const avatarElement = document.querySelector('.popup__form-avatar') // форма редактирования аватара
 
 // попап с изображением
 
@@ -32,13 +36,24 @@ export const itemElement = document.querySelector('.popup_js_item');
 export const itemCloseButtonElement = itemElement.querySelector('.popup__close_js_item');
 export const itemOpenButtonElement = document.querySelector('.profile__addbutton');
 export const mestoElement = itemElement.querySelector('.popup__form_js_item');
-export const mestoInfoTitle = itemElement.querySelector('.popup__input_info_title');
-export const mestoInfoLink = itemElement.querySelector('.popup__input_info_link');
+export const mestoInfoTitle = itemElement.querySelector('.popup__input_info_title'); //значение название карточки
+export const mestoInfoLink = itemElement.querySelector('.popup__input_info_link'); // ссылка на карточку
 export const formAddCards = itemElement.querySelector('.popup__form_js_item');
+
+// попап удаления карточки
+
+export const popupDeleteCard = '.popup-delete'
+export const popupDeleteButton = document.querySelector('.element__delete')
+
+// попап редактирования аватара профиля
+
+export const popupEditAvatar = '.popup-avatar'
 
 // масив с карточками
 
 export const listElements = document.querySelector('.elements');
+
+/*
 export const initialCards = [
     {
         name: 'Архыз',
@@ -65,6 +80,7 @@ export const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
+*/
 
 // селекторы для валидации форм
 

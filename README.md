@@ -18,4 +18,6 @@ __В процессе разработки данного сервиса исп�
 9. Рефакторинг кода с помощью ООП.  
 __Ссылка на gh-pages:__
 https://rezantsevayana.github.io/mesto/index.html
+https://rezantsevayana.github.io/mesto
+ 
 

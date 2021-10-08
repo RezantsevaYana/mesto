@@ -6,16 +6,22 @@
     box-sizing: border-box;
 }
 
-@media screen and (max-width:905px) {
+@media screen and (max-width:1115px) {
     .popup__image-photo  {
         height: 400px;
         margin: auto;
     }
 }
 
-@media screen and (max-width:630px) {
+@media screen and (max-width:840px) {
     .popup__image-photo  {
         height: 300px;
+    }
+}
+
+@media screen and (max-width:650px) {
+    .popup__image-photo  {
+        height: 240px;
     }
 }
 

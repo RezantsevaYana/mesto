@@ -9,6 +9,8 @@ export class PopupWithForm extends Popup {
         this._sumbitForm = sumbitForm;
         this._form = this._popup.querySelector('.popup__form');
         this._inputLists = this._form.querySelectorAll('.popup__input');
+        this._submit = this._form.querySelector(".popup__button");
+        this._submitText = this._submit.textContent;
     }
 
     // приватный метод собирает данные всех полей формы 
@@ -38,7 +40,7 @@ export class PopupWithForm extends Popup {
     setEventListener() {
         super.setEventListener();
         this._form.addEventListener('submit', (evt) => {
-            evt.preventDefault();
+             evt.preventDefault();
             this._sumbitForm();
         }); 
     }
@@ -46,5 +48,15 @@ export class PopupWithForm extends Popup {
     closePopup() {
         this._form.reset();
         super.closePopup();
+    }
+
+    // текст когда ожидания от сервера нет
+    buttonText() {
+        this._submit.textContent = this._submitText;
+    }
+
+    // изменение текста при ожидании
+    waitingText() {
+        this._submit.textContent = 'Сохранение...';
     }
 }

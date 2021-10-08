@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
- <!--  <link rel="stylesheet" href="./pages/index.css"> --> 
+    <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body class='body'>
@@ -15,7 +15,9 @@
         </header>
         <main class="content">
             <section class="profile">
-                <div class="profile__avatar"></div>
+                <button class="profile__avatar-button">
+                    <img src="<%=require('./images/jak_kusto.jpg')%>" class="profile__avatar" alt="Аватар пользователя">
+                </button>
                 <div class="profile__info">
                     <h1 class="profile__title">Жак-Ив Кусто</h1>
                     <button class="profile__button" type='button'>
@@ -34,7 +36,10 @@
                         <img src=' ' class="element__photo" alt="">
                         <div class="element__container">
                             <h2 class="element__title"></h2>
+                            <div class='element__likes'>
                             <button class="element__button" type="button"></button>
+                            <p class='element__counter'>0</p>
+                            </div>
                         </div>
                     </article>
                 </template>
@@ -86,8 +91,40 @@
             <figcaption class='popup__image-title'></figcaption>
         </figure>
     </section>
-    
-<!--     <script  type ='module' src="./pages/index.js"></script>
+
+    <!--Попап удаления-->
+    <section class="popup popup-delete">
+        <div class="popup__container popup__container-delete">
+            <button class="popup__close popup__close_js_delete" type="button"></button>
+            <h2 class="popup__title popup__title-delete">Вы уверены?</h2>
+            <form class="popup__form popup__form-delete" name="mesto" novalidate>
+                <button class="popup__button  popup__button_save popup__button-delete" type="submit">
+                    Да
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!--Попап добавления аватара-->
+
+    <section class="popup popup-avatar">
+        <div class="popup__container popup__container-avatar">
+            <button class="popup__close popup__close_js_avatar" type="button"></button>
+            <h2 class="popup__title popup__title-avatar">Обновить аватар</h2>
+            <form class="popup__form popup__form-avatar" name="mesto" novalidate>
+                <input id='link-input' type="url" class="popup__input popup__input_avatar_link" value="" name="link"
+                    placeholder="Ссылка на картинку" required>
+                <span class='error link-input-error'></span>
+                <button class="popup__button popup__button_invalid popup__button_save popup__button-avatar" type="submit">
+                    Сохранить
+                </button>
+            </form>
+        </div>
+    </section>
+
+
+    <!--
+    <script  type ='module' src="./pages/index.js"></script>
    <script  type ='module' src="./components/Card.js"></script>
    <script  type ='module' src="./components/FormValidator.js"></script>
    <script  type ='module' src="./components/Popup.js"></script>
@@ -95,10 +132,12 @@
    <script  type ='module' src="./components/PopupWithImage.js"></script>
    <script  type ='module' src="./components/Section.js"></script>
    <script  type ='module' src="./components/UserInfo.js"></script>
-   <script  type ='module' src="./utils/constants.js"></script>  -->
+   <script  type ='module' src="./utils/constants.js"></script>
+   <script  type ='module' src="./components/Api.js"></script>
 
-    
-    
+-->
+
+
     
 </body>
 
