@@ -8,7 +8,7 @@ export class PopupWithForm extends Popup {
         super(popupSelector);
         this._sumbitForm = sumbitForm;
         this._form = this._popup.querySelector('.popup__form');
-        this._inputLists = this._form.querySelectorAll('.popup__input');
+        this._inputList = this._form.querySelectorAll('.popup__input');
         this._submit = this._form.querySelector(".popup__button");
         this._submitText = this._submit.textContent;
     }
@@ -17,7 +17,7 @@ export class PopupWithForm extends Popup {
     getInputValues () {
         // создали пустой массив, куда будут добавляться значения всех инпутов, прошлись по массиву инпутов и собрали все значение
         this._inputValues = {};
-        this._inputLists.forEach(input => {
+        this._inputList.forEach(input => {
             this._inputValues[input.name] = input.value;
         });
         // вернули массив значений всех инпутов
@@ -28,7 +28,7 @@ export class PopupWithForm extends Popup {
     // метод, который подставляет в инпуты значения со страницы
 
     setInputValues(values) {
-        this._inputLists.forEach(input => {
+        this._inputList.forEach(input => {
             input.value = values[input.name];
         })
     }

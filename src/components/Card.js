@@ -18,26 +18,26 @@ export class Card {
     }
 
     // функция отвечающая за активность лайка и изменения количества лайков, на вход принимает массив
-    elementLikeNumber(data) {
-        const photoLike = this._element.querySelector('.element__button'); // кнопка лайка
-        const likesCounter = this._element.querySelector('.element__counter'); // счетик лайков
+    updateLikes(data) {
+     //   const photoLike = this._element.querySelector('.element__button'); // кнопка лайка
+      //  const likesCounter = this._element.querySelector('.element__counter'); // счетик лайков
 
        // возвращает тру если среди лайкoв есть лайк пользователя
         this._isLiked = data.likes.find(data => this._userId === data._id);
 
         if (this._isLiked) {
-            photoLike.classList.add('element__button_active');
-            likesCounter.textContent = data.likes.length;
+            this._photoLike.classList.add('element__button_active');
+            this._likesCounter.textContent = data.likes.length;
         }
         else {
-            photoLike.classList.remove('element__button_active');
-            likesCounter.textContent = data.likes.length;
+            this._photoLike.classList.remove('element__button_active');
+            this._likesCounter.textContent = data.likes.length;
         }
     //    console.log(data.likes)
     }
 
     // метод возвращающий тру, если пользователь уже поставил лайк карточке
-    looklike() {
+    isLiked() {
         return this._isLiked
     }
 
@@ -107,6 +107,7 @@ export class Card {
         this._closePhoto = document.querySelector('.popup__close_js_image');
         this._photoDelete = this._element.querySelector('.element__delete');
         this._photoLike = this._element.querySelector('.element__button');
+        this._likesCounter = this._element.querySelector('.element__counter'); // счетик лайков
 
         this._setEventListener();
         this._elementShowDelete();

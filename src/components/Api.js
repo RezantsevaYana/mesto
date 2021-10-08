@@ -10,21 +10,19 @@ export default class Api {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers})
             .then(this._checkResult)
-            .catch(this._showError)
     }
 
     // редактирование профиля
-    editUserInfo(name, about) {
+    editUserInfo(data) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             body: JSON.stringify({
-              name: name,
-              about: about,
+              name: data.name,
+              about: data.about,
             }),
             headers: this._headers
           })
           .then(this._checkResult)
-          .catch(this._showError)
     }
 
 
@@ -33,7 +31,6 @@ export default class Api {
         return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers,})
             .then(this._checkResult)
-            .catch(this._showError);
     }
 
     
@@ -48,7 +45,6 @@ export default class Api {
             headers: this._headers
         })
             .then(this._checkResult)
-            .catch(this._showError);
     }
 
     
@@ -59,7 +55,6 @@ export default class Api {
             headers: this._headers
         })
         .then(this._checkResult)
-        .catch(this._showError);
     }
     
 
@@ -71,7 +66,6 @@ export default class Api {
             headers: this._headers
         })
         .then(this._checkResult)
-        .catch(this._showError);
     }
 
     // удаление лайка
@@ -82,21 +76,19 @@ export default class Api {
             headers: this._headers
         })
         .then(this._checkResult)
-        .catch(this._showError);
     }
 
     // обновление аватара пользователя
 
-    editAvatar(avatarLink) {
+    editAvatar(data) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                avatar: avatarLink
+                avatar: data.link
             })
         })
         .then(this._checkResult)
-        .catch(this._showError);
     }
 
 
@@ -108,11 +100,5 @@ export default class Api {
         }
 
         return Promise.reject(`Ошибка: ${res.status}`);
-    }
-
-    // в случае, если сервер возвращает ошибку
-
-    _showError = (err) => {
-        console.log(err);
     }
 }

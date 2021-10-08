@@ -24,7 +24,7 @@ export default class UserInfo {
     }
 
     // публичный метод, принимающий новые данные пользователя и добавляющие их на странцу (то есть получаем данные с формы и добавляем на странцу)
-    setUserInfo({name, about, avatar}) {
+    setUserInfo({name, about, avatar, _id}) {
         /*
         nameTitle.textContent = nameInput.value;
         nameSubtitle.textContent = jobInput.value;
@@ -32,5 +32,6 @@ export default class UserInfo {
         this._nameTitle.textContent = name;
         this._nameSubtitle.textContent = about;
         this._userAvatar.src = avatar;
+        this.id = _id
     }
 }

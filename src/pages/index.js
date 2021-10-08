@@ -26,6 +26,11 @@ import {
 import Api from '../components/Api.js';
 import { PopupWithConfirmation } from '../components/PopupWithConfirmation.js';
 
+// функция для показа ошибок в промисах
+function showError(err) {
+    console.log(err)
+}
+
 // КЛАСС API
 
 const api = new Api({
@@ -93,18 +98,17 @@ popupAvatar.setEventListener()
 
 // обработчик отправки данных формы редактирования информации о себе (изменение информации о себе на странице)
 function submitFormEditProfile() {
-    const infoProfile = {
-        name: nameInput.value,
-        about: jobInput.value
-    }
+   // собрали значение всех инпутов с формы в массив
+    const infoAboutUser = popupEdit.getInputValues()
     
     popupEdit.waitingText();
 
-    api.editUserInfo(infoProfile.name, infoProfile.about)
+    api.editUserInfo(infoAboutUser)
         .then(data => {
             userInfo.setUserInfo(data);
             popupEdit.closePopup();
         })
+        .catch(showError)
         .finally(() => {
             popupEdit.buttonText();
         })
@@ -128,7 +132,7 @@ function submitFormAddCard() {
         
         popupCard.closePopup();
     })
-
+    .catch(showError)
     .finally(() => {
         popupCard.buttonText();
     })
@@ -138,11 +142,13 @@ function submitFormAddCard() {
 
 // обработчик редактирвоания аватара пользователя
 function submitFormEditAvatar() {
+    const avatarUser = popupAvatar.getInputValues()
     popupAvatar.waitingText()
-    api.editAvatar(avatarEditInput.value).then((data) => {
+    api.editAvatar(avatarUser).then((data) => {
         userInfo.setUserInfo(data);
         popupAvatar.closePopup()
     })
+    .catch(showError)
     .finally(() => {
         popupAvatar.buttonText();
     })
@@ -157,24 +163,20 @@ function renderCard(cards) {
         },
         handleCardLike: () => {
             // если пользователь не поставил лайк, то мы его добавляем
-            if (!card.looklike()) {
+            if (!card.isLiked()) {
                 api.likeCard(cards._id)
                 .then((cards) => {
-                    card.elementLikeNumber(cards)
+                    card.updateLikes(cards)
                 })
-                .catch((err) => {
-                    console.log(err);
-                })
+                .catch(showError)
             }
             // если лайк уже стоит, то при нажатии он должен удалиться
             else {
                 api.deleteLikeCard(cards._id)
                 .then((cards) => {
-                    card.elementLikeNumber(cards)
+                    card.updateLikes(cards)
                 })
-                .catch((err) => {
-                    console.log(err);
-                })
+                .catch(showError)
             }
         },
         handleCardDelete: () => {
@@ -185,13 +187,14 @@ function renderCard(cards) {
                     card.elementDelete();
                     popupDelete.closePopup();
                 })
+                .catch(showError)
             })
         }
         
 
     });
     const cardElement = card.generateCard();
-    card.elementLikeNumber(cards);
+    card.updateLikes(cards);
     return cardElement;
 };
 
