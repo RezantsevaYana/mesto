@@ -5,7 +5,6 @@ import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
-import { Popup  } from '../components/Popup.js';
 import UserInfo from '../components/UserInfo.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { 
@@ -16,10 +15,7 @@ import {
         popupOpenButtonElement, 
         itemOpenButtonElement,
         listCards,  
-        jobInput,
-        nameInput,
         userAvatar,
-        avatarEditInput,
         avatarEditButton,
         avatarElement
      } from '../utils/constants.js';
@@ -164,17 +160,17 @@ function renderCard(cards) {
         handleCardLike: () => {
             // если пользователь не поставил лайк, то мы его добавляем
             if (!card.isLiked()) {
-                api.likeCard(cards._id)
-                .then((cards) => {
-                    card.updateLikes(cards)
+                api.likeCard(card._id)
+                .then((res) => {
+                    card.updateLikes(res)
                 })
                 .catch(showError)
             }
             // если лайк уже стоит, то при нажатии он должен удалиться
             else {
-                api.deleteLikeCard(cards._id)
-                .then((cards) => {
-                    card.updateLikes(cards)
+                api.deleteLikeCard(card._id)
+                .then((res) => {
+                    card.updateLikes(res)
                 })
                 .catch(showError)
             }
@@ -182,7 +178,7 @@ function renderCard(cards) {
         handleCardDelete: () => {
             popupDelete.openPopup();
             popupDelete.submitForm(() =>{
-                api.deleteCards(cards._id)
+                api.deleteCards(card._id)
                 .then(() => {
                     card.elementDelete();
                     popupDelete.closePopup();

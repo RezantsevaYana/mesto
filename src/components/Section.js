@@ -17,6 +17,6 @@ export class Section {
 
     // метод, который принимает DOM-элемент и добавляяет его в контейнер (принимает готовые карточки и добавляет их в контейнер)
     addItem(element) {
-        this._container.prepend(element);
+        this._container.append(element);
     }
 };
